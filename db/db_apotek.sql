@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Bulan Mei 2023 pada 15.18
+-- Waktu pembuatan: 29 Bulan Mei 2023 pada 15.14
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 8.1.2
 
@@ -34,6 +34,13 @@ CREATE TABLE `tb_detail_transaksi` (
   `qty` int(11) NOT NULL,
   `sub_total` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_detail_transaksi`
+--
+
+INSERT INTO `tb_detail_transaksi` (`id_detail`, `id_transaksi`, `id_obat`, `qty`, `sub_total`) VALUES
+('1', 'TRNS1', 'OT1', 3, 30000);
 
 -- --------------------------------------------------------
 
@@ -130,6 +137,14 @@ CREATE TABLE `tb_obat` (
   `status_obat` enum('tersedia','kosong') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `tb_obat`
+--
+
+INSERT INTO `tb_obat` (`id_obat`, `nama_obat`, `id_jenis`, `id_kategori`, `id_rak`, `stock_obat`, `harga`, `status_obat`) VALUES
+('OT1', 'Paramex', 'JS1', 'KI1', 'RK1', 12, 10000, 'tersedia'),
+('OT2', 'Paracetamol', 'JS1', 'KI1', 'RK1', 100, 12000, 'tersedia');
+
 -- --------------------------------------------------------
 
 --
@@ -164,6 +179,13 @@ CREATE TABLE `tb_transaksi` (
   `no_tlp` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `tb_transaksi`
+--
+
+INSERT INTO `tb_transaksi` (`id_transaksi`, `tgl_transaksi`, `id_user`, `grand_total`, `nama_plngn`, `usia`, `no_tlp`) VALUES
+('TRNS1', '2023-05-29', 'USR1', 0, '', 0, '');
+
 -- --------------------------------------------------------
 
 --
@@ -175,7 +197,7 @@ CREATE TABLE `tb_user` (
   `id_karyawan` varchar(50) NOT NULL,
   `id_level` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -183,9 +205,8 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id_user`, `id_karyawan`, `id_level`, `username`, `password`) VALUES
-('USR1', 'KN1', 'LVL1', 'admin', '$2y$10$ED8nIU4d.70I2vm54.kQsemFAqWTFylqRgwBwkt06Eu'),
-('USR2', 'KN2', 'LVL2', 'kasir', '$2y$10$SziHA30nuEFe7gUPokSGfeKLk6USwPhf07HhrZR25Uf'),
-('USR3', 'KN1', 'LVL2', 'test', '$2y$12$sBFji/ZivP.gT0SS.zTE6Oz9dfBuCgLObPctNAgIKVv');
+('USR1', 'KN1', 'LVL1', 'admin', '$2y$10$3dcrCvXgfmvIKmX5Sq1lhuUxEzlUPtc3pKktm4o6yLxlK0ewKXKgq'),
+('USR2', 'KN2', 'LVL2', 'kasir', '$2y$10$469XMQRigEwlntYP30AKO.xNW1yXReMihTvxm21QrP2F/AkpnTTUe');
 
 --
 -- Indexes for dumped tables
