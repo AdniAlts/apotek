@@ -75,14 +75,14 @@ if ($row2) {
             <div class="karyawan">
                 <a href="karyawan.php" class="btn btn-light w-100 mb-3 active">Karyawan</a>
             </div>
-            <div class="user">
-                <a href="user.php" class="btn btn-light w-100 mb-3">User</a>
-            </div>
             <div class="level">
                 <a href="level.php" class="btn btn-light w-100 mb-3">Level</a>
             </div>
+            <div class="user">
+                <a href="user.php" class="btn btn-light w-100 mb-3">User</a>
+            </div>
             <div class="transaksi">
-                <a href="" class="btn btn-light w-100 mb-3">Transaksi</a>
+                <a href="transaksi.php" class="btn btn-light w-100 mb-3">Transaksi</a>
             </div>
             <div class="logout">
                 <a href="logout.php" class="btn btn-danger w-100 mt-3">Logout</a>

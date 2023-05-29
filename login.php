@@ -12,18 +12,17 @@ if (isset($_POST["login"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    
 
-    $result = mysqli_query($conn, "SELECT * FROM tb_user WHERE username = '$username'");
+
+    $result = mysqli_query($conn, "SELECT * FROM tb_user JOIN tb_karyawan ON tb_user.id_karyawan = tb_karyawan.id_karyawan WHERE username = '$username'");
 
     if (mysqli_num_rows($result) === 1) {
 
         $row = mysqli_fetch_assoc($result);
-        var_dump(password_verify($password, '$2a$12$LyvTFxI3gRpngrJtOuv/duyDLX9J6Jo3vMKi6FFUeaFWsD3iDayge'));
-        die;
         if (password_verify($password, $row['password'])) {
             $_SESSION["login"] = true;
-
+            $_SESSION["nama"] = $row['nama_karyawan'];
+            $_SESSION["id"] = $row['id_user'];
             header("Location: index.php");
             exit;
         }
@@ -51,7 +50,7 @@ if (isset($_POST["login"])) {
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="text" class="form-control" name="password" id="password">
+                <input type="password" class="form-control" name="password" id="password">
             </div>
             <button type="submit" name="login" class="btn btn-primary mb-3">Sumbit</button>
             </ul>

@@ -1,5 +1,10 @@
 <?php
+session_start();
 
+if (!isset($_SESSION["login"])) {
+    header("Location: login.php");
+    exit;
+}
 
 include 'config.php';
 
@@ -62,11 +67,11 @@ if ($row2) {
                 <a href="index.php" class="btn btn-light w-100">Dashboard</a>
             </div>
             <div class="dropdown mb-3">
-                <button class="btn btn-light w-100 dropdown-toggle active" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-light w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Data Master
                 </button>
                 <ul class="dropdown-menu w-100">
-                    <li><a href="obat.php" class="dropdown-item active">Obat</a></li>
+                    <li><a href="obat.php" class="dropdown-item">Obat</a></li>
                     <li><a href="jenis.php" class="dropdown-item">Jenis Obat</a></li>
                     <li><a href="kategori.php" class="dropdown-item">Kategori Obat</a></li>
                     <li><a href="rak.php" class="dropdown-item">Rak</a></li>
@@ -75,11 +80,14 @@ if ($row2) {
             <div class="karyawan">
                 <a href="karyawan.php" class="btn btn-light w-100 mb-3">Karyawan</a>
             </div>
+            <div class="level">
+                <a href="level.php" class="btn btn-light w-100 mb-3">Level</a>
+            </div>
             <div class="user">
                 <a href="user.php" class="btn btn-light w-100 mb-3 active">User</a>
             </div>
             <div class="transaksi">
-                <a href="" class="btn btn-light w-100 mb-3">Transaksi</a>
+                <a href="transaksi.php" class="btn btn-light w-100 mb-3">Transaksi</a>
             </div>
             <div class="logout">
                 <a href="logout.php" class="btn btn-danger w-100 mt-3">Logout</a>
@@ -138,7 +146,7 @@ if ($row2) {
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="col-form-label">Password:</label>
-                                <input type="text" class="form-control" name="password" id="password">
+                                <input type="password" class="form-control" name="password" id="password">
                             </div>
                             <div class="modal-footer ">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -231,7 +239,7 @@ if ($row2) {
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="password2" class="col-form-label">Password:</label>
-                                                    <input type="text" class="form-control" name="password2" id="password2" value="<?php echo $data['password']; ?>">
+                                                    <input type="password" class="form-control" name="password2" id="password2" value="<?php echo $data['password']; ?>">
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -275,9 +283,8 @@ if ($row2) {
                     $level2 = $_POST['level2'];
                     $username2 = $_POST['username2'];
                     $password2 = $_POST['password2'];
-                    $opption = ['cost'=> 12];
 
-                    $passwordd = password_hash($password2, PASSWORD_BCRYPT, $opption);
+                    $passwordd = password_hash($password2, PASSWORD_DEFAULT);
 
                     $sql3 = mysqli_query($conn, "UPDATE tb_user SET id_user='$id2', id_karyawan='$karyawan2', id_level='$level2', username='$username2', password='$passwordd' WHERE id_user = '$id2' ");
 
