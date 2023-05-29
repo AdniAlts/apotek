@@ -2,7 +2,7 @@
 $host = 'localhost';
 $username = 'root';
 $password = '';
-$database = 'db_apotek';
+$database = 'adni_apotek';
 
 // membuat koneksi
 $conn = mysqli_connect($host, $username, $password, $database);
