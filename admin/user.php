@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION["login"])) {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit;
 }
 
@@ -47,9 +47,10 @@ if ($row2) {
 
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-bodytertiary bg-secondary">
+    <nav class="navbar sticky-top bg-bodytertiary bg-info bg-gradient">
         <div class="container-fluid">
             <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><span class="navbar-toggler-icon"></span></button>
+            <h4 class="me-3 fw-bold">APOTEK CENTRAL</h4>
             <div class="collapse navbar-collapse nav justify-content-end" id="navbarScroll">
             </div>
         </div>

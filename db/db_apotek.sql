@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Bulan Mei 2023 pada 15.14
+-- Waktu pembuatan: 30 Bulan Mei 2023 pada 15.51
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 8.1.2
 
@@ -34,13 +34,6 @@ CREATE TABLE `tb_detail_transaksi` (
   `qty` int(11) NOT NULL,
   `sub_total` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `tb_detail_transaksi`
---
-
-INSERT INTO `tb_detail_transaksi` (`id_detail`, `id_transaksi`, `id_obat`, `qty`, `sub_total`) VALUES
-('1', 'TRNS1', 'OT1', 3, 30000);
 
 -- --------------------------------------------------------
 
@@ -178,13 +171,6 @@ CREATE TABLE `tb_transaksi` (
   `usia` int(3) NOT NULL,
   `no_tlp` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `tb_transaksi`
---
-
-INSERT INTO `tb_transaksi` (`id_transaksi`, `tgl_transaksi`, `id_user`, `grand_total`, `nama_plngn`, `usia`, `no_tlp`) VALUES
-('TRNS1', '2023-05-29', 'USR1', 0, '', 0, '');
 
 -- --------------------------------------------------------
 

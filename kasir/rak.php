@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION["login"])) {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit;
 }
 
@@ -40,13 +40,14 @@ if ($row2) {
 
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-bodytertiary bg-secondary">
-        <div class="container-fluid">
-            <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse nav justify-content-end" id="navbarScroll">
-            </div>
-        </div>
-    </nav>
+<nav class="navbar sticky-top bg-bodytertiary bg-info bg-gradient">
+    <div class="container-fluid">
+      <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><span class="navbar-toggler-icon"></span></button>
+      <h4 class="me-3 fw-bold">APOTEK CENTRAL</h4>
+      <div class="collapse navbar-collapse nav justify-content-end" id="navbarScroll">
+      </div>
+    </div>
+  </nav>
 
     <div class="offcanvas offcanvas-start text-bg-dark w-25" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
         <div class="offcanvas-header">
@@ -69,15 +70,6 @@ if ($row2) {
                     <li><a href="rak.php" class="dropdown-item ">Kategori Obat</a></li>
                     <li><a href="rak.php" class="dropdown-item active">Rak</a></li>
                 </ul>
-            </div>
-            <div class="karyawan">
-                <a href="karyawan.php" class="btn btn-light w-100 mb-3">Karyawan</a>
-            </div>
-            <div class="level">
-                <a href="level.php" class="btn btn-light w-100 mb-3">Level</a>
-            </div>
-            <div class="user">
-                <a href="user.php" class="btn btn-light w-100 mb-3">User</a>
             </div>
             <div class="transaksi">
                 <a href="transaksi.php" class="btn btn-light w-100 mb-3">Transaksi</a>

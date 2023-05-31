@@ -1,12 +1,11 @@
 <?php
 session_start();
-
 if (isset($_SESSION["login"])) {
     header("Location: index.php");
     exit;
 }
 
-require 'config.php';
+require 'db/config.php';
 
 if (isset($_POST["login"])) {
     $username = $_POST["username"];
@@ -19,13 +18,22 @@ if (isset($_POST["login"])) {
     if (mysqli_num_rows($result) === 1) {
 
         $row = mysqli_fetch_assoc($result);
-        if (password_verify($password, $row['password'])) {
-            $_SESSION["login"] = true;
-            $_SESSION["nama"] = $row['nama_karyawan'];
-            $_SESSION["id"] = $row['id_user'];
-            header("Location: index.php");
-            exit;
+        if (password_verify($password, $row["password"])) {
+            if ($row['id_level'] == "LVL1") {
+                $_SESSION["login"] = true;
+                $_SESSION["nama"] = $row['nama_karyawan'];
+                $_SESSION["id"] = $row['id_user'];
+                header("Location: admin/index.php");
+                exit;
+            } elseif ($row['id_level'] == "LVL2") {
+                $_SESSION["login"] = true;
+                $_SESSION["nama"] = $row['nama_karyawan'];
+                $_SESSION["id"] = $row['id_user'];
+                header("Location: kasir/index.php");
+                exit;
+            }
         }
+        echo "username atau password anda salah";
     }
 }
 ?>
@@ -39,10 +47,10 @@ if (isset($_POST["login"])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 
-<body class="bg-warning">
+<body class="bg-info bg-gradient">
 
-    <div class="container bg-light position-absolute top-50 start-50 translate-middle rounded">
-        <h2 class="position-absolute top-0 start-50 translate-middle-x">Login</h2><br><br>
+    <div class="container bg-light position-absolute top-50 start-50 translate-middle rounded w-25 border border-secondary">
+        <h2 class="text-center mb-2">Login</h2>
         <form action="" method="post">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>

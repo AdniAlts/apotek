@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION["login"])) {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit;
 }
 
@@ -34,18 +34,18 @@ if (isset($_POST['bayar'])) {
     // $obat = $_POST['obat'];
     // $qty = $_POST['qty'];
     // $sub = $_POST['sub'];
-    
+
     // var_dump($_POST['obat']);
     // die;
     $sqll = mysqli_query($conn, "INSERT INTO tb_transaksi (id_transaksi, tgl_transaksi, id_user) VALUES ('$id', '$tanggal', '$user')");
     // if ($sqll) {
-        foreach ($_POST['obat'] as $key => $value) {
-            // var_dump($_POST['sub']);
-            // die;
-            $qty = $_POST['qty'][$key];
-            $sub = $_POST['sub'][$key];
-            $sql = mysqli_query($conn, "INSERT INTO tb_detail_transaksi (id_detail, id_transaksi, id_obat, qty, sub_total) VALUES ('$detail', '$id', '$value', '$qty', '$sub')");
-        }
+    foreach ($_POST['obat'] as $key => $value) {
+        // var_dump($_POST['sub']);
+        // die;
+        $qty = $_POST['qty'][$key];
+        $sub = $_POST['sub'][$key];
+        $sql = mysqli_query($conn, "INSERT INTO tb_detail_transaksi (id_detail, id_transaksi, id_obat, qty, sub_total) VALUES ('$detail', '$id', '$value', '$qty', '$sub')");
+    }
     // } else {
     //     echo "Error inserting transaction: " . mysqli_error($conn);
     // }
@@ -115,9 +115,10 @@ if ($row3) {
 
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-bodytertiary bg-secondary">
+    <nav class="navbar sticky-top bg-bodytertiary bg-info bg-gradient">
         <div class="container-fluid">
             <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><span class="navbar-toggler-icon"></span></button>
+            <h4 class="me-3 fw-bold">APOTEK CENTRAL</h4>
             <div class="collapse navbar-collapse nav justify-content-end" id="navbarScroll">
             </div>
         </div>
@@ -144,15 +145,6 @@ if ($row3) {
                     <li><a href="kategori.php" class="dropdown-item">Kategori Obat</a></li>
                     <li><a href="rak.php" class="dropdown-item">Rak</a></li>
                 </ul>
-            </div>
-            <div class="karyawan">
-                <a href="karyawan.php" class="btn btn-light w-100 mb-3">Karyawan</a>
-            </div>
-            <div class="level">
-                <a href="level.php" class="btn btn-light w-100 mb-3">Level</a>
-            </div>
-            <div class="user">
-                <a href="user.php" class="btn btn-light w-100 mb-3">User</a>
             </div>
             <div class="transaksi">
                 <a href="transaksi.php" class="btn btn-light w-100 mb-3 active">Transaksi</a>
@@ -350,37 +342,6 @@ if ($row3) {
                         <div class="form-group">
                             <label for="sub" class="col-form-label">Sub Total:</label>
                             <input type="text" class="form-control mb-2" name="sub[]" id="sub" readonly>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="form-group">
-                            <input type="hidden" name="detail" id="detail" class="form-control" value="<?php echo $newId2; ?>">
-                            <label for="obat" class="col-form-label">Obat:</label>
-                            <select name="obat[]" id="obat" class="form-select bg-body-tertiary rounded" onchange="calculateSubtotal()">
-                                <?php
-                                include 'config.php';
-                                $query = mysqli_query($conn, "SELECT * FROM tb_obat");
-
-                                while ($row = mysqli_fetch_assoc($query)) {
-                                    $id = $row['id_obat'];
-                                    $harga = $row['harga'];
-                                    $nama_obat = $row['nama_obat'];
-                                    echo '<option value="' . $id . '" data-harga="' . $harga . '">' . $nama_obat . '</option>';
-                                }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="form-group">
-                            <label for="qty" class="col-form-label">Qty:</label>
-                            <input type="text" class="form-control" name="qty[]" id="qty" oninput="calculateSubtotal()">
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="form-group">
-                            <label for="sub" class="col-form-label">Sub Total:</label>
-                            <input type="text" class="form-control mb-2" name="sub[]" id="sub">
                         </div>
                     </div>
                     <div id="additionalInputs"></div>
